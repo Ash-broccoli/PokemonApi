@@ -1,4 +1,3 @@
-console.log('You have connected...')
 
 document.addEventListener("DOMContentLoaded", () =>{
 
@@ -38,6 +37,7 @@ function fetchPokemonData(pokemon){
         .then(response => response.json())
         .then(function(pokeData){
             renderPokemon(pokeData)
+            console.log(pokeData)
         })
 }
 
@@ -91,12 +91,4 @@ function deleteEverything(event){
     event.target.style = 'none';
     let allPokemonContainer = document.querySelector('#kanto-container')
     allPokemonContainer.innerText = ""
-
-    let generateBtn = document.createElement('button')
-    generateBtn.innerText = "Generate Kanto"
-    generateBtn.id = 'generate-kanto'
-    generateBtn.classList.add('btn', 'btn-secondary')
-    generateBtn.addEventListener('click', renderEverything);
-
-    allPokemonContainer.append(generateBtn)
 }
