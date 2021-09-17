@@ -2,14 +2,14 @@ console.log('You have connected...')
 
 document.addEventListener("DOMContentLoaded", () =>{
 
-    let generateBtn = document.querySelector('#generate-pokemon');
+    let generateBtn = document.querySelector('#generate-kanto');
     generateBtn.addEventListener('click', renderEverything)
 
     getDeleteBtn().addEventListener('click', deleteEverything);
 })
 
 function renderEverything(){
-    let allPokemonContainer = document.querySelector('#poke-container')
+    let allPokemonContainer = document.querySelector('#kanto-container')
     allPokemonContainer.innerText = "";
     fetchKantoPokemon();
 
@@ -43,24 +43,23 @@ function fetchPokemonData(pokemon){
 
 
 function renderPokemon(pokeData){
-    let allPokemonContainer = document.getElementById('poke-container');
-    let pokeContainer = document.createElement("div") //div will be used to hold the data/details for indiviual pokemon.{}
-    pokeContainer.classList.add('ui', 'card');
+    let allPokemonContainer = document.getElementById('kanto-container');
+    let pokeContainer = document.createElement("tr") //div will be used to hold the data/details for indiviual pokemon.{}
+
 
     createPokeImage(pokeData.id, pokeContainer);
 
-
-    let pokeName = document.createElement('h4')
+    let pokeName = document.createElement('td')
     pokeName.innerText = pokeData.name
 
-    let pokeNumber = document.createElement('p')
+    let pokeNumber = document.createElement('td')
     pokeNumber.innerText = `#${pokeData.id}`
 
-    let pokeTypes = document.createElement('ul') //ul list will hold the pokemon types
+    let pokeTypes = document.createElement('td') //ul list will hold the pokemon types
     createTypes(pokeData.types, pokeTypes) // helper function to go through the types array and create li tags for each one
 
 
-    pokeContainer.append(pokeName, pokeNumber, pokeTypes);   //appending all details to the pokeContainer div
+    pokeContainer.append(pokeName,pokeNumber, pokeTypes);   //appending all details to the pokeContainer div
     allPokemonContainer.appendChild(pokeContainer);       //appending that pokeContainer div to the main div which will                                                             hold all the pokemon cards
 }
 
@@ -73,8 +72,7 @@ function createTypes(types, ul){
 }
 
 function createPokeImage(pokeID, containerDiv){
-    let pokeImgContainer = document.createElement('div')
-    pokeImgContainer.classList.add('image')
+    let pokeImgContainer = document.createElement('td')
 
     let pokeImage = document.createElement('img')
     if(pokeID < 10){
@@ -91,13 +89,13 @@ function createPokeImage(pokeID, containerDiv){
 
 function deleteEverything(event){
     event.target.style = 'none';
-    let allPokemonContainer = document.querySelector('#poke-container')
+    let allPokemonContainer = document.querySelector('#kanto-container')
     allPokemonContainer.innerText = ""
 
     let generateBtn = document.createElement('button')
-    generateBtn.innerText = "Generate Pokemon"
-    generateBtn.id = 'generate-pokemon'
-    generateBtn.classList.add('ui', 'secondary', 'button')
+    generateBtn.innerText = "Generate Kanto"
+    generateBtn.id = 'generate-kanto'
+    generateBtn.classList.add('btn', 'btn-secondary')
     generateBtn.addEventListener('click', renderEverything);
 
     allPokemonContainer.append(generateBtn)
