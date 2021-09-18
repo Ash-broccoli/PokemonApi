@@ -60,7 +60,7 @@ function renderPokemon(pokeData){
 
     let pokeMoves = document.createElement('td')
     let select = document.createElement('select')
-    
+    select.classList.add('form-control')
     pokeMoves.append(createMoves(pokeData.moves, select))
 
     pokeContainer.append(pokeName,pokeNumber, pokeTypes, pokeMoves);   //appending all details to the pokeContainer div
@@ -76,6 +76,12 @@ function createTypes(types, ul){
 }
 
 function createMoves(moves, td){
+    let start = document.createElement('option')
+    start.innerText = "Move list"
+    start.setAttribute('selected', 'selected')
+    start.setAttribute('disabled', 'disabled')
+    start.setAttribute('hidden', 'hidden')
+    td.append(start)
     moves.forEach(function(move){
         let movesLi = document.createElement('option');
         movesLi.innerText = move['move']['name'];
