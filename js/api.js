@@ -21,7 +21,7 @@ function getDeleteBtn(){
 
 
 function fetchKantoPokemon(){
-    fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
+    fetch('https://pokeapi.co/api/v2/pokemon?limit=100&offset=151')
         .then(response => response.json())
         .then(function(allpokemon){
             allpokemon.results.forEach(function(pokemon){
@@ -58,7 +58,10 @@ function renderPokemon(pokeData){
     let pokeTypes = document.createElement('td') //ul list will hold the pokemon types
     createTypes(pokeData.types, pokeTypes) // helper function to go through the types array and create li tags for each one
 
-    pokeContainer.append(pokeName,pokeNumber, pokeTypes);   //appending all details to the pokeContainer div
+    let pokeMoves = document.createElement('td')
+    createMoves(pokeData.moves, pokeMoves)
+
+    pokeContainer.append(pokeName,pokeNumber, pokeTypes, pokeMoves);   //appending all details to the pokeContainer div
     allPokemonContainer.appendChild(pokeContainer);       //appending that pokeContainer div to the main div which will                                                             hold all the pokemon cards
 }
 
@@ -67,6 +70,14 @@ function createTypes(types, ul){
         let typeLi = document.createElement('li');
         typeLi.innerText = type['type']['name'];
         ul.append(typeLi)
+    })
+}
+
+function createMoves(moves, ul){
+    moves.forEach(function(move){
+        let movesLi = document.createElement('li');
+        movesLi.innerText = move['move']['name'];
+        ul.append(movesLi)
     })
 }
 
