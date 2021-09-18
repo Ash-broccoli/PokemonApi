@@ -58,7 +58,6 @@ function renderPokemon(pokeData){
     let pokeTypes = document.createElement('td') //ul list will hold the pokemon types
     createTypes(pokeData.types, pokeTypes) // helper function to go through the types array and create li tags for each one
 
-
     pokeContainer.append(pokeName,pokeNumber, pokeTypes);   //appending all details to the pokeContainer div
     allPokemonContainer.appendChild(pokeContainer);       //appending that pokeContainer div to the main div which will                                                             hold all the pokemon cards
 }
